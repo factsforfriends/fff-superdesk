@@ -1,0 +1,87 @@
+version: "3.2"
+services:
+
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./caddy:/data
+    env_file:
+      - .env
+    labels:
+       caddy.email: "${CADDY_EMAIL}"
+
+  mongodb:
+    image: mongo:5.0
+    volumes:
+      - ./data/db:/data/db
+
+  redis:
+    image: redis:6.2
+
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    environment:
+      - discovery.type=type=single-node
+      - bootstrap.memory_lock=true
+    volumes:
+      - ./data/elastic:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  superdesk-server:
+    image: sourcefabricoss/superdesk-server:latest
+    depends_on:
+      - redis
+      - mongodb
+      - elastic
+    env_file:
+      - .env
+    environment:
+      - APPLICATION_NAME: "${APPLICATION_NAME}"
+      - SUPERDESK_CLIENT_URL: "${SUPERDESK_CLIENT_URL}"
+      - CONTENTAPI_URL: "${CONTENTAPI_URL}"
+      - DEMO_DATA: "${DEMO_DATA}"
+      - WEB_CONCURRENCY: "${WEB_CONCURRENCY}"
+      - DEFAULT_TIMEZONE: "${DEFAULT_TIMEZONE}"
+      - SECRET_KEY: "${SECRET_KEY}"
+      - SESSION_EXPIRY_MINUTES: "${SESSION_EXPIRY_MINUTES}"
+      - MONGO_URI: "${MONGO_URI}"
+      - LEGAL_ARCHIVE_URI: "${LEGAL_ARCHIVE_URI}"
+      - ARCHIVED_URI: "${ARCHIVED_URI}"
+      - PUBLICAPI_MONGO_URI: "${PUBLICAPI_MONGO_URI}"
+      - CONTENTAPI_MONGO_URI: "${CONTENTAPI_MONGO_URI}"
+      - ELASTICSEARCH_URL: "${ELASTICSEARCH_URL}"
+      - ELASTICSEARCH_INDEX: "${ELASTICSEARCH_INDEX}"
+      - REDIS_URL: "${REDIS_URL}"
+      - CELERY_BROKER_URL: "${CELERY_BROKER_URL}"
+      - MEDIA_PREFIX: "${MEDIA_PREFIX}"
+      - AMAZON_ACCESS_KEY_ID: "${AMAZON_ACCESS_KEY_ID}"
+      - AMAZON_SECRET_ACCESS_KEY: "${AMAZON_SECRET_ACCESS_KEY}"
+      - AMAZON_REGION: "${AMAZON_REGION}"
+      - AMAZON_CONTAINER_NAME: "${AMAZON_CONTAINER_NAME}"
+      - AMAZON_S3_SUBFOLDER: "${AMAZON_S3_SUBFOLDER}"
+      - AMAZON_OBJECT_ACL: "${AMAZON_OBJECT_ACL}"
+
+  superdesk-client:
+    image: sourcefabricoss/superdesk-client:latest
+    env_file:
+      - .env
+    environment:
+      - SUPERDESK_URL: "${SUPERDESK_URL}"
+      - SUPERDESK_WS_URL: "${SUPERDESK_WS_URL}"
+    depends_on:
+      - superdesk-server
+    labels:
+      caddy: "${CADDY_URL}"
+      caddy.reverse_proxy: "{{upstreams http 80}}"
+      caddy.tls: ${CADDY_EMAIL}
+      
