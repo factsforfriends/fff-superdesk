@@ -29,7 +29,7 @@ services:
       - superdesk
 
   elastic:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
