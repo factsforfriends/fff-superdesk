@@ -6,6 +6,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    networks:
+      - superdesk
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./caddy:/data
@@ -18,15 +20,21 @@ services:
     image: mongo:5.0
     volumes:
       - ./data/db:/data/db
+    networks:
+      - superdesk
 
   redis:
     image: redis:6.2
+    networks:
+      - superdesk
 
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
+    networks:
+      - superdesk
     volumes:
       - ./data/elastic:/usr/share/elasticsearch/data
     ulimits:
@@ -43,6 +51,8 @@ services:
       - redis
       - mongodb
       - elastic
+    networks:
+      - superdesk
     env_file:
       - .env
     environment:
@@ -85,7 +95,13 @@ services:
       SUPERDESK_WS_URL: "${SUPERDESK_WS_URL}"
     depends_on:
       - superdesk-server
+    networks:
+      - superdesk
     labels:
       caddy: "${CADDY_URL}"
       caddy.reverse_proxy: "{{upstreams http 80}}"
       caddy.tls: ${CADDY_EMAIL}
+
+networks:
+    superdesk:
+        driver: bridge
