@@ -1,0 +1,35 @@
+[
+    {
+        "display_name": "Katharina Klimkeit",
+        "email": "katharina@factsforfriends.de",
+        "first_name": "Katharina",
+        "is_active": true,
+        "last_name": "Klimkeit",
+        "needs_activation": false,
+        "password": "$2a$12$JqZnMtOW2D6bjOH6FIIoG.VI2.soMsy0yxneTTy6U8yabwFK9QZzK",
+        "user_type": "user",
+        "username": "katharina"
+    },
+    {
+        "display_name": "Valerie Scholz",
+        "email": "valerie@factsforfriends.de",
+        "first_name": "Valerie",
+        "is_active": true,
+        "last_name": "Scholz",
+        "needs_activation": false,
+        "password": "$2a$12$JqZnMtOW2D6bjOH6FIIoG.VI2.soMsy0yxneTTy6U8yabwFK9QZzK",
+        "user_type": "user",
+        "username": "valerie"
+    },
+    {
+        "display_name": "Jens Preussner",
+        "email": "jens@factsforfriends.de",
+        "first_name": "Jens",
+        "is_active": true,
+        "last_name": "Preussner",
+        "needs_activation": false,
+        "password": "$2a$12$JqZnMtOW2D6bjOH6FIIoG.VI2.soMsy0yxneTTy6U8yabwFK9QZzK",
+        "user_type": "user",
+        "username": "jens"
+    }
+]
