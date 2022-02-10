@@ -58,7 +58,7 @@
         "unique_field": "qcode"
       },
       {
-        "_id": "vocabulary-fact-medium",
+        "_id": "factsnack-medium",
         "field_type": null,
         "items": [
           { "is_active": true, "name": "Blog", "qcode": "blog" },
@@ -76,5 +76,137 @@
         "disable_entire_category_selection": false,
         "_deleted": false,
         "unique_field": "qcode"
+      },
+      {
+        "_id": "factsnack-rating",
+        "field_type": null,
+        "items": [
+          { "is_active": true, "name": "Refuted", "qcode": "refuted", "translations": { "name": {"de": "Widerlegt"}}},
+          { "is_active": true, "name": "Misleading", "qcode": "misleading", "translations": { "name": {"de": "Irreführend"}}},
+          { "is_active": true, "name": "Verified", "qcode": "verified", "translations": { "name": {"de": "Belegt"}} }
+        ],
+        "type": "manageable",
+        "schema": { "name": { "translate": true }, "qcode": {}, "parent": {} },
+        "service": { "all": 1 },
+        "selection_type": "multi selection",
+        "display_name": "Rating",
+        "translations": {
+          "display_name": {
+            "ar": "Rating",
+            "da": "Rating",
+            "de-DE": "Bewertung",
+            "el": "Rating",
+            "es": "Clasificación",
+            "nb": "Rating",
+            "pt-BR": "Rating",
+            "ru-RU": "Рейтинг",
+            "uk-UA": "Rating",
+            "fr-CA": "Classement"
+          }
+        },
+        "description": "Allowed ratings to be selected for fact snacks",
+        "helper_text": "How has the fake news been rated?",
+        "disable_entire_category_selection": false,
+        "_deleted": false,
+        "unique_field": "qcode"
+      },
+      {
+        "_id": "factsnack-regions",
+        "display_name": "Regions",
+        "type": "manageable",
+        "selection_type": "multi selection",
+        "unique_field": "qcode",
+        "items": [
+          { "is_active": true, "name": "DACH", "qcode": "dach", "translations": { "name": {"de": "DACH"}}},
+          { "is_active": true, "name": "USA", "qcode": "usa", "translations": { "name": {"de": "USA"}}}
+        ],
+        "translations": {
+          "display_name": {
+            "ar": "Region",
+            "da": "Region",
+            "de-DE": "Region",
+            "el": "Region",
+            "es": "Region",
+            "nb": "Region",
+            "pt-BR": "Region",
+            "ru-RU": "Region",
+            "uk-UA": "Region",
+            "fr-CA": "Region"
+          }
+        },
+        "description": "Allowed regions to be selected for fact snacks",
+        "helper_text": "Which region is the fake news targeting?",
+        "disable_entire_category_selection": false,
+        "_deleted": false
+      },
+      {
+        "_id": "categories",
+        "display_name": "Categories",
+        "type": "manageable",
+        "selection_type": "multi selection",
+        "unique_field": "qcode",
+        "items": [
+          {
+            "is_active": true,
+            "name": "Politics",
+            "qcode": "politics",
+            "subject": "Politics",
+            "translations": { "name": { "de": "Politik" } }
+          },
+          {
+            "is_active": true,
+            "name": "Society",
+            "qcode": "society",
+            "subject": "Society",
+            "translations": { "name": { "de": "Gesellschaft" } }
+          },
+          {
+            "is_active": true,
+            "name": "COVID-19",
+            "qcode": "covid-19",
+            "subject": "Covid-19",
+            "translations": null
+          },
+          {
+            "is_active": true,
+            "name": "Elections 2021",
+            "qcode": "elections-2021",
+            "subject": "Elections 2021",
+            "translations": { "name": { "de": "Wahljahr 2021" } }
+          },
+          {
+            "is_active": true,
+            "name": "Economy",
+            "qcode": "economy",
+            "subject": "Economy",
+            "translations": { "name": { "de": "Wirtschaft" } }
+          },
+          {
+            "is_active": true,
+            "name": "Environment",
+            "qcode": "environment",
+            "subject": "Environment",
+            "translations": { "name": { "de": "Umwelt" } }
+          }
+        ],
+        "schema": { "name": { "translate": true }, "qcode": {}, "subject": {} },
+        "translations": {
+          "display_name": {
+            "ar": "فئات",
+            "da": "kategorier",
+            "de-DE": "Kategorien",
+            "el": "κατηγορίες",
+            "es": "categorías",
+            "nb": "kategorier",
+            "pt-BR": "categorias",
+            "ru-RU": "категории",
+            "uk-UA": "категорії",
+            "fr-CA": "Catégories"
+          }
+        },
+        "disable_entire_category_selection": false,
+        "_deleted": false,
+        "description": "Internal categories used to order fact snacks",
+        "helper_text": "Internal category to organise fact snack"
       }
 ]
