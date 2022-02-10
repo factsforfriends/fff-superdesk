@@ -1,0 +1,13 @@
+[
+    {
+        "display_name": "Joe Doe",
+        "email": "jore@service.com",
+        "first_name": "Joe",
+        "is_active": true,
+        "last_name": "Doe",
+        "needs_activation": false,
+        "password": "<a bcrypt hash, salt 12>",
+        "user_type": "user",
+        "username": "joe"
+    }
+]

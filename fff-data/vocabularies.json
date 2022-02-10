@@ -1,0 +1,80 @@
+[
+    {
+        "_id": "factsnack-fact",
+        "field_type": "text",
+        "items": [],
+        "type": "manageable",
+        "schema": { "name": {}, "qcode": {}, "parent": {} },
+        "service": { "all": 1 },
+        "display_name": "Fact",
+        "description": "The fact that debunks or acknowledges the claim",
+        "helper_text": "The fact that debunks or acknowledges the claim",
+        "_deleted": false,
+        "unique_field": "qcode"
+      },
+      {
+        "_id": "factsnack-source",
+        "field_type": "urls",
+        "items": [],
+        "type": "manageable",
+        "schema": { "name": {}, "qcode": {}, "parent": {} },
+        "service": { "all": 1 },
+        "display_name": "Source URL",
+        "description": "The URL under which the fact check was published.",
+        "helper_text": "The URL under which the fact check was published.",
+        "_deleted": false,
+        "unique_field": "qcode"
+      },
+      {
+        "_id": "factsnack-claim",
+        "field_type": "text",
+        "items": [],
+        "type": "manageable",
+        "schema": { "name": {}, "qcode": {}, "parent": {} },
+        "service": { "all": 1 },
+        "display_name": "Claim",
+        "description": "The claim that is made by the fake news",
+        "helper_text": "The claim that is made by the fake news",
+        "_deleted": false,
+        "unique_field": "qcode"
+      },
+      {
+        "_id": "factsnack-related",
+        "field_type": "related_content",
+        "items": [],
+        "type": "manageable",
+        "schema": { "name": {}, "qcode": {}, "parent": {} },
+        "service": { "all": 1 },
+        "field_options": {
+          "allowed_workflows": { "in_progress": true, "published": true, "ingested": false },
+          "allowed_types": { "text": true },
+          "multiple_items": { "enabled": true, "max_items": 3 }
+        },
+        "display_name": "Related",
+        "description": "Related fact snacks",
+        "helper_text": "Related fact snacks",
+        "disable_entire_category_selection": false,
+        "_deleted": false,
+        "unique_field": "qcode"
+      },
+      {
+        "_id": "vocabulary-fact-medium",
+        "field_type": null,
+        "items": [
+          { "is_active": true, "name": "Blog", "qcode": "blog" },
+          { "is_active": true, "name": "Telegram", "qcode": "telegram" },
+          { "is_active": true, "name": "Twitter", "qcode": "twitter" },
+          { "is_active": true, "name": "Facebook", "qcode": "facebook" }
+        ],
+        "type": "manageable",
+        "schema": { "name": {}, "qcode": {}, "parent": {} },
+        "service": { "all": 1 },
+        "selection_type": "multi selection",
+        "display_name": "Medium",
+        "description": "Allowed mediums to be selected from fact snacks",
+        "helper_text": "The medium over which the fake news is distributed",
+        "disable_entire_category_selection": false,
+        "_deleted": false,
+        "unique_field": "qcode"
+      }
+]
